@@ -1,5 +1,16 @@
 #include "ft_printf.h"
 
+static void	ft_putnum(uintmax_t nbr)
+{
+	if (nbr > 9)
+	{
+		ft_putnum(nbr / 10);
+		ft_putnum(nbr % 10);
+	}
+	else
+		ft_putchar(nbr + '0');
+}
+
 static void ft_putsymb(uintmax_t nbr, t_tmp *tmp, unsigned len)
 {
 	if (tmp->isprs)
@@ -7,7 +18,7 @@ static void ft_putsymb(uintmax_t nbr, t_tmp *tmp, unsigned len)
     if (nbr == 0 && tmp->isprs && tmp->prs == 0)
     	return ;
     else
-		ft_putnbr(nbr);
+		ft_putnum(nbr);
 }				 
 
 ssize_t	ft_pref_handle(uintmax_t nbr, char *pref, t_tmp *tmp)
@@ -29,7 +40,8 @@ ssize_t	ft_pref_handle(uintmax_t nbr, char *pref, t_tmp *tmp)
 	 nbrlen += ft_strlen(pref);
 	 if (tmp->iswid && !tmp->minus)
          ft_space(nbrlen, tmp->wid, ' ');
-	 ft_putstr(pref);
+	 if (pref != NULL)
+	 	ft_putstr(pref);
 	 ft_putsymb(nbr, tmp, nbrstr);
 	 if (tmp->iswid && tmp->minus)
 		 ft_space(nbrstr, tmp->wid, ' ');
