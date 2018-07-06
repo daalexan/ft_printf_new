@@ -32,7 +32,7 @@ static void ft_putsymb(uintmax_t nbr, t_tmp *tmp, unsigned len)
         ft_putnbr(nbr);
 }
  
-ssize_t ft_uint_handle(uintmax_t nbr, t_tmp *tmp)
+ssize_t ft_print_int(uintmax_t nbr, t_tmp *tmp)
 {
     ssize_t nbrstr;
     ssize_t nbrlen;
@@ -54,7 +54,7 @@ ssize_t ft_uint_handle(uintmax_t nbr, t_tmp *tmp)
     if (tmp->iswid && tmp->minus)
         ft_space(nbrstr, tmp->wid, ' ');
     return (tmp->iswid ? FT_MAX(tmp->wid, nbrlen) : nbrlen);
-}				   
+}
 
 ssize_t	ft_int_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 {
@@ -82,5 +82,5 @@ ssize_t	ft_int_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 		return (ft_pref_handle(nbr, pref, tmp));
 	}
 	else
-		return (ft_uint_handle(nbr, tmp));
+		return (ft_print_int(nbr, tmp));
 }

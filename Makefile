@@ -29,7 +29,7 @@ PRINTF_FILES =  src/ft_parse.c \
 				src/handlers/ft_unsig_handle.c \
 				src/handlers/ft_octal_handle.c \
 				src/handlers/ft_wstr_handle.c \
-
+				src/handlers/ft_nth_handle.c 
 OBJ = $(PRINTF_FILES:.c=.o)
 
 all: $(NAME)

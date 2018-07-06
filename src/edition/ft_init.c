@@ -14,6 +14,7 @@ static void	ft_setinit(t_hndl *hndl)
 	hndl['U'] = &ft_long_handle;
 	hndl['o'] = &ft_octal_handle;
 	hndl['O'] = &ft_long_handle;
+	hndl['n'] = &ft_nth_handle;
 }
 
 t_hndl	ft_init(char c)

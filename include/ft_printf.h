@@ -59,5 +59,6 @@ ssize_t			ft_long_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 ssize_t			ft_octal_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 ssize_t			ft_wchar_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 ssize_t			ft_wstr_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
+ssize_t			ft_nth_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 
 #endif
