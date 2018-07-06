@@ -66,5 +66,7 @@ ssize_t	ft_octal_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 			ft_space(1, tmp->wid, ' ');
 		return (tmp->iswid ? FT_MAX(tmp->wid, 1) : 1);
 	}
+	else if (tmp->hash)
+		ft_putchar('0');
 	return (ft_print(nbr, tmp));
 }

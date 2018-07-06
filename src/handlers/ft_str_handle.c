@@ -14,8 +14,8 @@ ssize_t ft_str_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 		if (str == NULL)
 			str = "(null)";
 		strlen = tmp->isprs ? tmp->prs : (ssize_t)ft_strlen(str);
-		if (tmp->iswid && !tmp->zero)
-			ft_space(strlen, tmp->wid, tmp->minus ? '0' : ' ');
+		if (tmp->iswid && !tmp->minus)
+			ft_space(strlen, tmp->wid, tmp->zero ? '0' : ' ');
 		ft_putnstr(str, strlen);
 		if (tmp->iswid && tmp->minus)
 			ft_space(strlen, tmp->wid, ' ');
