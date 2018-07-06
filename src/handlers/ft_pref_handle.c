@@ -44,6 +44,6 @@ ssize_t	ft_pref_handle(uintmax_t nbr, char *pref, t_tmp *tmp)
 	 	ft_putstr(pref);
 	 ft_putsymb(nbr, tmp, nbrstr);
 	 if (tmp->iswid && tmp->minus)
-		 ft_space(nbrstr, tmp->wid, ' ');
+		 ft_space(nbrlen, tmp->wid, ' ');
 	 return (tmp->iswid ? FT_MAX(tmp->wid, nbrlen) : nbrlen);
 }
