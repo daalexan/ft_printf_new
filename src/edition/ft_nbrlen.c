@@ -1,8 +1,8 @@
 #include "ft_printf.h"
 
-size_t ft_nbrlen(int n)
+ssize_t ft_nbrlen(ssize_t n)
 {
-	int i;
+	ssize_t	i;
 
 	i = 0;
 	if (n == 0)

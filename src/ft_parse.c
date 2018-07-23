@@ -16,7 +16,7 @@ void	ft_flag(char *frm, int *i, t_tmp *tmp)
 		else if (frm[*i] == '0')
 			tmp->zero = 1;
 		if (tmp->minus)
-			tmp->zero = 0;	
+			tmp->zero = 0;
 	}
 }
 
@@ -24,7 +24,7 @@ void	ft_width(char *frm, int *i, va_list *arg, t_tmp *tmp)
 {
 	int wid;
 
-	tmp->wid = 0;
+	wid = 0;
 	if (frm[*i] == '*' || ft_isdigit(frm[*i]))
 	{
 		if (frm[*i] == '*')
@@ -92,5 +92,7 @@ void	ft_type(char *frm, int *i, t_tmp *tmp)
 		tmp->type = 5;
 	else if (frm[*i] == 'z')
 		tmp->type = 6;
+	else if (frm[*i] == 'L')
+		tmp->type = 8;
 }
 

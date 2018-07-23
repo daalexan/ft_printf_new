@@ -21,6 +21,18 @@ static void ft_putsymb(uintmax_t nbr, t_tmp *tmp, unsigned len)
         ft_putoct(nbr);
 } 
 
+static ssize_t ft_length(t_tmp *tmp, ssize_t len)
+{
+	if (tmp->isprs)
+		if (tmp->prs > len)
+			len = tmp->prs;
+    if (tmp->space || tmp->plus)
+        len++;
+	if (tmp->hash && len + 1 != tmp->wid && !tmp->zero)
+		len++;
+    return (len);
+}
+
 static ssize_t ft_print(uintmax_t nbr, t_tmp *tmp)
 {
 	ssize_t nbrstr;
@@ -36,9 +48,14 @@ static ssize_t ft_print(uintmax_t nbr, t_tmp *tmp)
         tmp->iswid = 0;
         tmp->isprs = 1;
     }
-    nbrlen = FT_MAX(tmp->prs, tmp->wid) - FT_MAX(tmp->prs, nbrstr);
-    if (tmp->iswid && !tmp->minus)
+    nbrlen = ft_length(tmp, nbrstr);
+	if (tmp->iswid && !tmp->minus)
         ft_space(nbrlen, tmp->wid, ' ');
+	if (tmp->hash)
+	{
+		ft_putchar('0');
+		nbrstr++;
+	}
     ft_putsymb(nbr, tmp, nbrstr);
     if (tmp->iswid && tmp->minus)
         ft_space(nbrstr, tmp->wid, ' ');
@@ -47,10 +64,12 @@ static ssize_t ft_print(uintmax_t nbr, t_tmp *tmp)
 
 ssize_t	ft_octal_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 {
-	uintmax_t nbr;
+	uintmax_t	nbr;
 
 	(void)frm;
 	(void)i;
+	if (frm[*i] == 'O')
+		tmp->type = 3;
 	nbr = convert(arg, tmp);
 	if (tmp->plus && nbr != 0)
 	{
@@ -60,13 +79,10 @@ ssize_t	ft_octal_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 	else if (tmp->plus && nbr == 0 && tmp->isprs && tmp->prs == 0)
 	{
 		if (tmp->iswid && !tmp->minus)
-			ft_space(1, tmp->wid, tmp->zero ? '0' : ' ');
-		ft_putchar('0');
+			ft_space(0, tmp->wid, tmp->zero ? '0' : ' ');
 		if (tmp->iswid && tmp->minus)
-			ft_space(1, tmp->wid, ' ');
-		return (tmp->iswid ? FT_MAX(tmp->wid, 1) : 1);
+			ft_space(0, tmp->wid, ' ');
+		return (tmp->iswid ? FT_MAX(tmp->wid, 1) : 0);
 	}
-	else if (tmp->hash)
-		ft_putchar('0');
 	return (ft_print(nbr, tmp));
 }

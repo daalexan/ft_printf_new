@@ -11,7 +11,7 @@ static ssize_t ft_parse(char *format, int *i, va_list *arg)
 		ft_flag(format, i, &tmp);
 		ft_width(format, i, arg, &tmp);
 		ft_prs(format, i, arg, &tmp);
-		ft_type(format, i, &tmp);
+		ft_type(format, i, &tmp);	
 		if ((hndl = ft_init(format[*i])) != NULL)
 			return (hndl(format, arg, i, &tmp));
 		else

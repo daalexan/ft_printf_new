@@ -39,12 +39,17 @@ void			ft_type(char *frm, int *i, t_tmp *tmp);
 **	edition functions
 */
 void    		ft_space(ssize_t len, int width, char symb);
-size_t			ft_nbrlen(int n);
+ssize_t			ft_nbrlen(ssize_t n);
 ssize_t			ft_octlen(uintmax_t nbr);
 void			ft_putn(uintmax_t n, size_t len);
 ssize_t			ft_print_hex(intmax_t nbr, t_tmp *tmp, char *hex);
 uintmax_t		convert(va_list *arg, t_tmp *tmp);
 void			ft_print_wchar(wchar_t str, unsigned int len);
+ssize_t			ft_print_int(uintmax_t nbr, t_tmp *tmp);
+void			ft_putint(uintmax_t nbr);
+intmax_t		convert_type(va_list *arg, t_tmp *tmp);
+ssize_t			ft_wide(t_tmp *tmp);
+void			ft_putfloat(ssize_t nbr);
 /*
 **	handlers functions
 */
@@ -60,5 +65,9 @@ ssize_t			ft_octal_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 ssize_t			ft_wchar_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 ssize_t			ft_wstr_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 ssize_t			ft_nth_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
-
+ssize_t			ft_dint_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
+ssize_t			ft_binary_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
+ssize_t			ft_ptr_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
+ssize_t			ft_float_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
+ssize_t			ft_scinot_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 #endif
