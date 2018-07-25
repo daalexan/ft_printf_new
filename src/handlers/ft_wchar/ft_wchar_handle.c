@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_wchar_handle.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daalexan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/25 11:25:56 by daalexan          #+#    #+#             */
+/*   Updated: 2018/07/25 11:25:57 by daalexan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static unsigned ft_size(wchar_t symb)
+static unsigned	ft_size(wchar_t symb)
 {
 	unsigned len;
 
@@ -17,11 +29,11 @@ static unsigned ft_size(wchar_t symb)
 	return (len);
 }
 
-ssize_t	ft_wchar_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
+ssize_t			ft_wchar_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 {
-	wchar_t str;
-	unsigned int strlen;
-	
+	wchar_t			str;
+	unsigned int	strlen;
+
 	(void)i;
 	(void)frm;
 	str = (wchar_t)va_arg(*arg, wint_t);

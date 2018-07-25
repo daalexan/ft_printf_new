@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daalexan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/25 11:08:56 by daalexan          #+#    #+#             */
+/*   Updated: 2018/07/25 11:08:58 by daalexan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static void	ft_setinit(t_hndl *hndl)
-{	
+{
 	hndl['s'] = &ft_str_handle;
 	hndl['S'] = &ft_wstr_handle;
 	hndl['d'] = &ft_int_handle;
@@ -22,15 +34,17 @@ static void	ft_setinit(t_hndl *hndl)
 	hndl['F'] = &ft_float_handle;
 	hndl['e'] = &ft_scinot_handle;
 	hndl['E'] = &ft_scinot_handle;
+	hndl['r'] = &ft_nonprt_handle;
+	hndl['%'] = &ft_prsnt_handle;
 }
 
-t_hndl	ft_init(char c)
+t_hndl		ft_init(char c)
 {
 	t_hndl *hndl;
 	t_hndl ret;
 
-	if ((hndl = malloc(sizeof(*hndl) *256)))
-			ft_setinit(hndl);
+	if ((hndl = malloc(sizeof(*hndl) * 1024)))
+		ft_setinit(hndl);
 	ret = hndl[(int)c];
 	free(hndl);
 	return (ret);

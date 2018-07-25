@@ -9,7 +9,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
-# define FT_MAX(x,y) (x >= y) ? x : y
+# define FT_MAX(x,y) ((x >= y) ? x : y)
 
 typedef struct  s_tmp
 {
@@ -38,23 +38,28 @@ void			ft_type(char *frm, int *i, t_tmp *tmp);
 /*
 **	edition functions
 */
-void    		ft_space(ssize_t len, int width, char symb);
+void                ft_space(ssize_t len, int width, char symb);
 ssize_t			ft_nbrlen(ssize_t n);
 ssize_t			ft_octlen(uintmax_t nbr);
-void			ft_putn(uintmax_t n, size_t len);
-ssize_t			ft_print_hex(intmax_t nbr, t_tmp *tmp, char *hex);
-uintmax_t		convert(va_list *arg, t_tmp *tmp);
-void			ft_print_wchar(wchar_t str, unsigned int len);
+void                ft_putn(uintmax_t n, size_t len);
+ssize_t			ft_print_hex(va_list *arg, t_tmp *tmp, char *hex);
+uintmax_t           convert(va_list *arg, t_tmp *tmp);
+void                ft_print_wchar(wchar_t str, unsigned int len);
 ssize_t			ft_print_int(uintmax_t nbr, t_tmp *tmp);
-void			ft_putint(uintmax_t nbr);
-intmax_t		convert_type(va_list *arg, t_tmp *tmp);
-ssize_t			ft_wide(t_tmp *tmp);
-void			ft_putfloat(ssize_t nbr);
+void                ft_putint(uintmax_t nbr);
+intmax_t		     convert_type(va_list *arg, t_tmp *tmp);
+ssize_t             ft_wide(t_tmp *tmp);
+void                ft_putfloat(ssize_t nbr);
+void                ft_puthex(uintmax_t nbr, char c);
+void                ft_puthexsymb(uintmax_t nbr, t_tmp *tmp,unsigned len, char *hex);
+ssize_t             ft_hexlen(uintmax_t nbr);
+void                ft_peref(ssize_t nbr, t_tmp *tmp);
+
 /*
 **	handlers functions
 */
 ssize_t			ft_str_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
-ssize_t 		ft_int_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
+ssize_t 		     ft_int_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 ssize_t			ft_pref_handle(uintmax_t nbr, char *pref, t_tmp *tmp);
 ssize_t			ft_char_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 t_hndl			ft_init(char c);
@@ -70,4 +75,8 @@ ssize_t			ft_binary_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 ssize_t			ft_ptr_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 ssize_t			ft_float_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
 ssize_t			ft_scinot_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
+ssize_t			ft_nonprt_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
+ssize_t             ft_prsnt_handle(char *frm, va_list *arg, int *i, t_tmp *tmp);
+
+
 #endif

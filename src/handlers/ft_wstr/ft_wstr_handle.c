@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_wstr_handle.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daalexan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/25 11:21:20 by daalexan          #+#    #+#             */
+/*   Updated: 2018/07/25 11:21:21 by daalexan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static size_t	ft_plen(wchar_t *str, int prs, size_t i)
@@ -16,7 +28,7 @@ static size_t	ft_plen(wchar_t *str, int prs, size_t i)
 		return (i);
 }
 
-static size_t ft_wlen(wchar_t *str)
+static ssize_t	ft_wlen(wchar_t *str)
 {
 	size_t len;
 
@@ -36,7 +48,7 @@ static size_t ft_wlen(wchar_t *str)
 	return (len);
 }
 
-static void	ft_putwstr(wchar_t *str, ssize_t len, ssize_t i)
+static void		ft_putwstr(wchar_t *str, ssize_t len, ssize_t i)
 {
 	while (*str && i < len)
 	{
@@ -63,7 +75,7 @@ static void	ft_putwstr(wchar_t *str, ssize_t len, ssize_t i)
 	}
 }
 
-ssize_t	ft_wstr_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
+ssize_t			ft_wstr_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 {
 	ssize_t strlen;
 	wchar_t *str;

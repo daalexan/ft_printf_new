@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daalexan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/25 11:35:26 by daalexan          #+#    #+#             */
+/*   Updated: 2018/07/25 11:35:27 by daalexan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static ssize_t ft_parse(char *format, int *i, va_list *arg)
+static ssize_t	ft_parse(char *format, int *i, va_list *arg)
 {
 	t_hndl	hndl;
-	t_tmp	tmp;	
+	t_tmp	tmp;
 
 	ft_bzero(&tmp, sizeof(tmp));
 	while (format[*i])
@@ -11,7 +23,7 @@ static ssize_t ft_parse(char *format, int *i, va_list *arg)
 		ft_flag(format, i, &tmp);
 		ft_width(format, i, arg, &tmp);
 		ft_prs(format, i, arg, &tmp);
-		ft_type(format, i, &tmp);	
+		ft_type(format, i, &tmp);
 		if ((hndl = ft_init(format[*i])) != NULL)
 			return (hndl(format, arg, i, &tmp));
 		else
@@ -20,7 +32,7 @@ static ssize_t ft_parse(char *format, int *i, va_list *arg)
 	return (-1);
 }
 
-static int ft_start(char *format, va_list *arg)
+static int		ft_start(char *format, va_list *arg)
 {
 	int i;
 	int count;
@@ -32,10 +44,7 @@ static int ft_start(char *format, va_list *arg)
 		if (format[i] == '%')
 		{
 			i++;
-			if (format[i] == '%')
-				count += ft_putchar(format[i]);
-			else
-				count += ft_parse(format, &i, arg);
+			count += ft_parse(format, &i, arg);
 		}
 		else if (format[i] != '%')
 			count += ft_putchar(format[i]);
@@ -44,7 +53,7 @@ static int ft_start(char *format, va_list *arg)
 	return (count);
 }
 
-int ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	va_list	arg;
 	int		res;

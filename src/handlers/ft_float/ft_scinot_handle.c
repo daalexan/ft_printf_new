@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_scinot_handle.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daalexan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/25 11:30:11 by daalexan          #+#    #+#             */
+/*   Updated: 2018/07/25 11:30:12 by daalexan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static void ft_print(size_t exp, char *znk)
+static void		ft_print(size_t exp, char *znk)
 {
 	ft_putchar(znk[0]);
 	ft_putchar(znk[1]);
@@ -13,12 +25,12 @@ static void ft_print(size_t exp, char *znk)
 		ft_putfloat(exp);
 }
 
-static ssize_t ft_sciprnt(double nbr, size_t exp, t_tmp *tmp, char *znk)
+static ssize_t	ft_sciprnt(double nbr, size_t exp, t_tmp *tmp, char *znk)
 {
 	ssize_t	start;
 	ssize_t	end;
 	size_t	len;
-	
+
 	len = 0;
 	start = nbr;
 	len += ft_nbrlen(start) + 1;
@@ -32,10 +44,10 @@ static ssize_t ft_sciprnt(double nbr, size_t exp, t_tmp *tmp, char *znk)
 	return (len + 4);
 }
 
-static void ft_mkexp(size_t *exp, double *nbr, char *znk)
+static void		ft_mkexp(size_t *exp, double *nbr, char *znk)
 {
 	size_t start;
-	
+
 	start = *nbr;
 	if (start == 0)
 	{
@@ -48,7 +60,7 @@ static void ft_mkexp(size_t *exp, double *nbr, char *znk)
 	}
 	else
 	{
-		znk[1] = '+'; 
+		znk[1] = '+';
 		while (start > 10)
 		{
 			(*nbr) /= 10;
@@ -58,7 +70,7 @@ static void ft_mkexp(size_t *exp, double *nbr, char *znk)
 	}
 }
 
-static void ft_pref(t_tmp *tmp, ssize_t *len, double *nbr)
+static void		ft_pref(t_tmp *tmp, ssize_t *len, double *nbr)
 {
 	if (tmp->plus || tmp->space)
 	{
@@ -76,13 +88,13 @@ static void ft_pref(t_tmp *tmp, ssize_t *len, double *nbr)
 	}
 }
 
-ssize_t ft_scinot_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
+ssize_t			ft_scinot_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 {
 	ssize_t len;
 	double	nbr;
 	size_t	exp;
 	char	znk[2];
-	
+
 	znk[0] = 'e';
 	exp = 0;
 	len = 0;

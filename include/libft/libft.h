@@ -16,6 +16,7 @@
 # include <wchar.h>
 # include <string.h>
 # include <inttypes.h>
+# include <unistd.h>
 
 typedef struct		s_list
 {

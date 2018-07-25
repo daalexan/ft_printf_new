@@ -23,6 +23,7 @@ PRINTF_FILES =  src/ft_parse.c \
 				src/handlers/ft_int/ft_prntint.c \
 				src/handlers/ft_hex/ft_hex_handle.c \
 				src/handlers/ft_hex/ft_print_hex.c \
+				src/handlers/ft_hex/ft_helpfnc.c \
 				src/handlers/ft_char/ft_char_handle.c \
 				src/handlers/ft_long/ft_long_handle.c \
 				src/handlers/ft_wchar/ft_wchar_handle.c \
@@ -36,7 +37,9 @@ PRINTF_FILES =  src/ft_parse.c \
 				src/handlers/ft_ptr/ft_ptr_handle.c \
 				src/handlers/ft_float/ft_float_handle.c \
 				src/handlers/ft_float/ft_scinot_handle.c \
-				src/handlers/ft_float/ft_prnt.c
+				src/handlers/ft_float/ft_prnt.c \
+				src/handlers/ft_nonprt/ft_nonprt_handle.c \
+				src/handlers/ft_prsnt/ft_prsnt_handle.c
 OBJ = $(PRINTF_FILES:.c=.o)
 
 all: $(NAME)

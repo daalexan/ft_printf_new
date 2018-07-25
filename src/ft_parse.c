@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daalexan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/25 11:35:20 by daalexan          #+#    #+#             */
+/*   Updated: 2018/07/25 11:35:21 by daalexan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void	ft_flag(char *frm, int *i, t_tmp *tmp)
@@ -14,7 +26,13 @@ void	ft_flag(char *frm, int *i, t_tmp *tmp)
 		else if (frm[*i] == '#')
 			tmp->hash = 1;
 		else if (frm[*i] == '0')
+		{
+			if (frm[(*i) + 1] == '+')
+				tmp->plus = 1;
+			if (frm[(*i) + 1] == '-')
+				tmp->minus = 1;
 			tmp->zero = 1;
+		}
 		if (tmp->minus)
 			tmp->zero = 0;
 	}
@@ -95,4 +113,3 @@ void	ft_type(char *frm, int *i, t_tmp *tmp)
 	else if (frm[*i] == 'L')
 		tmp->type = 8;
 }
-

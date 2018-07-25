@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_float_handle.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daalexan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/25 11:30:04 by daalexan          #+#    #+#             */
+/*   Updated: 2018/07/25 11:30:05 by daalexan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static void ft_func(double *nbr, t_tmp *tmp, size_t *len)
+static void	ft_func(double *nbr, t_tmp *tmp, size_t *len)
 {
 	if (*nbr < 0)
 	{
@@ -12,13 +24,13 @@ static void ft_func(double *nbr, t_tmp *tmp, size_t *len)
 		*nbr = (long double)*nbr;
 }
 
-ssize_t ft_float_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
+ssize_t		ft_float_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 {
 	double	nbr;
 	ssize_t	start;
 	ssize_t	end;
 	size_t	len;
-	
+
 	len = 0;
 	nbr = va_arg(*arg, double);
 	if (frm[*i] == 'F')
