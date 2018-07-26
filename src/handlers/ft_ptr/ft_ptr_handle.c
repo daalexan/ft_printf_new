@@ -41,8 +41,11 @@ static ssize_t	ft_print(va_list *arg, t_tmp *tmp, char *hex)
 	nbrlen = ft_length(tmp, nbrstr);
 	if (tmp->iswid && !tmp->minus)
 		ft_space(nbrlen, tmp->wid, ' ');
-	if (tmp->hash)
-		ft_putstr(hex);
+	if (tmp->space)
+		ft_putchar(' ');
+	else if (tmp->plus)
+		ft_putchar('+');
+	ft_putstr(hex);
 	ft_puthexsymb(nbr, tmp, nbrstr, hex);
 	if (tmp->iswid && tmp->minus)
 		ft_space(nbrlen, tmp->wid, ' ');
@@ -53,6 +56,7 @@ ssize_t			ft_ptr_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 {
 	(void)i;
 	(void)frm;
+	tmp->type = 6;
 	if (tmp->isprs)
 		tmp->zero = 0;
 	tmp->hash = 1;

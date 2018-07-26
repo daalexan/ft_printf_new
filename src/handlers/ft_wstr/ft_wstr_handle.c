@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static size_t	ft_plen(wchar_t *str, int prs, size_t i)
+static ssize_t	ft_plen(wchar_t *str, int prs, size_t i)
 {
 	if (*str == '\0' || prs == 0)
 		return (i);

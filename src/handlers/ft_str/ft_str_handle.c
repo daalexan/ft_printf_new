@@ -31,7 +31,11 @@ ssize_t	ft_str_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 			ft_space(0, tmp->wid, ' ');
 			return (tmp->wid);
 		}
-		strlen = tmp->isprs ? tmp->prs : (ssize_t)ft_strlen(str);
+		//strlen = tmp->isprs ? tmp->prs : (ssize_t)ft_strlen(str);
+		if (tmp->iswid || tmp->minus)//del
+			strlen = tmp->isprs ? tmp->prs : (ssize_t)ft_strlen(str);//del
+		else//del
+			strlen = (ssize_t)ft_strlen(str);//del
 		if (tmp->iswid && !tmp->minus)
 			ft_space(strlen, tmp->wid, tmp->zero ? '0' : ' ');
 		ft_putnstr(str, strlen);

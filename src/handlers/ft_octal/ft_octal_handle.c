@@ -42,8 +42,8 @@ static ssize_t	ft_length(t_tmp *tmp, ssize_t len, uintmax_t nbr)
 		if (tmp->prs == 0)
 			len = 0;
 	}
-	if (tmp->space && nbr != 0)// || tmp->plus
-		len++;
+	//if (tmp->space && nbr != 0)
+	//	len++;
 	if (tmp->hash && len + 1 != tmp->wid && !tmp->zero && nbr != 0)
 		len++;
 	return (len);
@@ -65,6 +65,7 @@ static ssize_t	ft_print(uintmax_t nbr, t_tmp *tmp)
 		tmp->isprs = 1;
 	}
 	nbrlen = ft_length(tmp, nbrstr, nbr);
+	printf("len %lu\n", nbrlen);
 	if (tmp->iswid && !tmp->minus)
 		ft_space(nbrlen, tmp->wid, ' ');
 	if (tmp->hash && nbr != 0)
@@ -90,7 +91,7 @@ ssize_t			ft_octal_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 	if (tmp->plus && nbr != 0)
 	{
 		tmp->isprs = 1;
-		tmp->prs = FT_MAX(tmp->prs, ft_octlen(nbr) + 1);
+		tmp->prs = FT_MAX(tmp->prs, ft_octlen(nbr));
 	}
 	else if (tmp->plus && nbr == 0 && tmp->isprs && tmp->prs == 0)
 	{
