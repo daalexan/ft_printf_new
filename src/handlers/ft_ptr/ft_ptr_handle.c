@@ -21,8 +21,6 @@ static ssize_t	ft_length(t_tmp *tmp, ssize_t len)
 	}
 	if (tmp->hash)
 		len += 2;
-	if (tmp->space || tmp->plus)
-		len++;
 	return (len);
 }
 
@@ -41,10 +39,6 @@ static ssize_t	ft_print(va_list *arg, t_tmp *tmp, char *hex)
 	nbrlen = ft_length(tmp, nbrstr);
 	if (tmp->iswid && !tmp->minus)
 		ft_space(nbrlen, tmp->wid, ' ');
-	if (tmp->space)
-		ft_putchar(' ');
-	else if (tmp->plus)
-		ft_putchar('+');
 	ft_putstr(hex);
 	ft_puthexsymb(nbr, tmp, nbrstr, hex);
 	if (tmp->iswid && tmp->minus)

@@ -39,11 +39,11 @@ static ssize_t	ft_length(t_tmp *tmp, ssize_t len, uintmax_t nbr)
 	{
 		if (tmp->prs > len)
 			len = tmp->prs;
-		if (tmp->prs == 0)
+		if (tmp->prs == 0 && !tmp->hash)
 			len = 0;
+		if (tmp->prs == 0 && tmp->hash)
+			len = 1;
 	}
-	//if (tmp->space && nbr != 0)
-	//	len++;
 	if (tmp->hash && len + 1 != tmp->wid && !tmp->zero && nbr != 0)
 		len++;
 	return (len);
@@ -65,14 +65,10 @@ static ssize_t	ft_print(uintmax_t nbr, t_tmp *tmp)
 		tmp->isprs = 1;
 	}
 	nbrlen = ft_length(tmp, nbrstr, nbr);
-	printf("len %lu\n", nbrlen);
 	if (tmp->iswid && !tmp->minus)
 		ft_space(nbrlen, tmp->wid, ' ');
-	if (tmp->hash && nbr != 0)
-	{
+	if (tmp->hash)
 		ft_putchar('0');
-		nbrstr++;
-	}
 	ft_putsymb(nbr, tmp, nbrstr);
 	if (tmp->iswid && tmp->minus)
 		ft_space(nbrlen, tmp->wid, ' ');

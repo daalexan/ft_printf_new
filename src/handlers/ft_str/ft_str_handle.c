@@ -12,7 +12,19 @@
 
 #include "ft_printf.h"
 
-ssize_t	ft_str_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
+static ssize_t	ft_len(t_tmp *tmp, char *str)
+{
+	if (tmp->isprs)
+	{
+		if (tmp->prs > (ssize_t)ft_strlen(str))
+			return (ft_strlen(str));
+		else if (tmp->prs < (ssize_t)ft_strlen(str))
+			return (tmp->prs);
+	}
+	return (ft_strlen(str));
+}
+
+ssize_t			ft_str_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 {
 	char	*str;
 	ssize_t	strlen;
@@ -20,7 +32,7 @@ ssize_t	ft_str_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 	(void)frm;
 	(void)i;
 	if (tmp->type == 3)
-		return (0);
+		return (ft_wstr_handle(frm, arg, i, tmp));
 	else
 	{
 		str = va_arg(*arg, char*);
@@ -31,11 +43,7 @@ ssize_t	ft_str_handle(char *frm, va_list *arg, int *i, t_tmp *tmp)
 			ft_space(0, tmp->wid, ' ');
 			return (tmp->wid);
 		}
-		//strlen = tmp->isprs ? tmp->prs : (ssize_t)ft_strlen(str);
-		if (tmp->iswid || tmp->minus)//del
-			strlen = tmp->isprs ? tmp->prs : (ssize_t)ft_strlen(str);//del
-		else//del
-			strlen = (ssize_t)ft_strlen(str);//del
+		strlen = ft_len(tmp, str);
 		if (tmp->iswid && !tmp->minus)
 			ft_space(strlen, tmp->wid, tmp->zero ? '0' : ' ');
 		ft_putnstr(str, strlen);
