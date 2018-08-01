@@ -45,20 +45,20 @@ OBJ = $(PRINTF_FILES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIB_FILES)libft.a
-	ar rc $(NAME) $(OBJ) $(LIB_FILES)*.o
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ) $(LIB_FILES)*.o
+	@ranlib $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER) -I $(PRINT_HEADER)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER) -I $(PRINT_HEADER)
 
 $(LIB_FILES)libft.a:
-	make -C $(LIB_FILES)
+	@make -C $(LIB_FILES)
 clean:
-	make clean -C $(LIB_FILES)
-	rm -f $(OBJ)
+	@make clean -C $(LIB_FILES)
+	@rm -f $(OBJ)
 fclean: clean
-	make fclean -C $(LIB_FILES)
-	rm -f $(NAME)
+	@make fclean -C $(LIB_FILES)
+	@rm -f $(NAME)
 
 re: fclean all
 
